@@ -19,10 +19,11 @@ class CreateInscriptionsTable extends Migration
             $table->string('email');
             $table->unsignedBigInteger('idType')->nullable();
             $table->foreign('idType')->references('id')->on('types')->onDelete('cascade');
+            $table->string('nameSchool')->default("-");
             $table->string('city');
-            $table->string('cni');
-            $table->string('cni_recto');
-            $table->string('cni_verso');
+            $table->string('cni')->default("-");
+            $table->string('cni_recto')->nullable();;
+            $table->string('cni_verso')->nullable();;
             $table->string('adresse');
             $table->string('phoneNo');
             $table->boolean('status')->default(0);

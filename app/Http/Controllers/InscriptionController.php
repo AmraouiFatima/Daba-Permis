@@ -7,116 +7,90 @@ use App\Models\Inscription;
 
 class InscriptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return \view('inscriptionForm.formInscription');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view ('formInscription');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function storeSchool(Request $request)
     {
-        $inscription=new Inscription;
-        $inscription->fullname=$request->input('fullname_auto');
-        $inscription->email=$request->input('email_auto');
-        $inscription->idType=1;
-        $inscription->city=$request->input('city_auto');
-        $inscription->adresse=$request->input('adresse_auto');
-        $inscription->phoneNo=$request->input('phone_auto');
-        $inscription->save();
-        return view ('formInscription');
+        $request->validate([
+            'fullname_auto' => 'required',
+            'email_auto' => 'required',
+            'city_auto' => 'required',
+            'adresse_auto' => 'required',
+            'phone_auto' => 'required',
+            'school' => 'required',
+
+        ]);
+
+        Inscription::insert([
+            'fullname' => request('fullname_auto'),
+            'email' => request('email_auto'),
+            'idType' => 1,
+            'nameSchool' => request('school'),
+            'city' => request('city_auto'),
+            'adresse' => request('adresse_auto'),
+            'phoneNo' => request('phone_auto'),
+        ]);
+
+        session()->flash('newInscriptionAuto', 'تم إنشاء تسجيل مدرسة لتعليم القيادة بنجاح');
+
+
+        return redirect()->route('formInscription');
     }
 
     public function storeMoniteur(Request $request)
     {
-        $inscription=new Inscription;
-        $inscription->fullname=$request->input('fullname_moniteur');
-        $inscription->email=$request->input('email_moniteur');
-        $inscription->idType=2;
-        $inscription->city=$request->input('city_moniteur');
-        $inscription->cni=$request->input('cni_moniteur');
-        $inscription->adresse=$request->input('adresse_moniteur');
-        $inscription->phoneNo=$request->input('phone_moniteur');
-        $inscription->save();
-        return view ('formInscription');
+        $request->validate([
+            'fullname_moniteur' => 'required',
+            'email_moniteur' => 'required',
+            'phone_moniteur' => 'required',
+            'cni_moniteur' => 'required',
+            'city_moniteur' => 'required',
+            'adresse_moniteur' => 'required',
+
+        ]);
+
+        Inscription::insert([
+            'fullname' => request('fullname_moniteur'),
+            'email' => request('email_moniteur'),
+            'idType' => 2,
+            'city' => request('city_moniteur'),
+            'adresse' => request('adresse_moniteur'),
+            'cni' => request('cni_moniteur'),
+            'phoneNo' => request('phone_moniteur'),
+        ]);
+
+        session()->flash('newInscriptionMoniteur', 'تم إنشاء تسجيل المدرب بنجاح');
+        return redirect()->route('formInscription');
     }
 
     public function storeCandidat(Request $request)
     {
-        $inscription=new Inscription;
-        $inscription->fullname=$request->input('fullname_candidat');
-        $inscription->email=$request->input('email_candidat');
-        $inscription->idType=3;
-        $inscription->city=$request->input('city_candidat');
-        $inscription->cni=$request->input('cni_candidat');
-        $inscription->adresse=$request->input('adresse_candidat');
-        $inscription->phoneNo=$request->input('phone_candidat');
-        $inscription->save();
-        return view ('formInscription');
-    }
+        $request->validate([
+            'fullname_candidat' => 'required',
+            'email_candidat' => 'required',
+            'phone_candidat' => 'required',
+            'cni_candidat' => 'required',
+            'city_candidat' => 'required',
+            'adresse_candidat' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        Inscription::insert([
+            'fullname' => request('fullname_candidat'),
+            'email' => request('email_candidat'),
+            'idType' => 3,
+            'city' => request('city_candidat'),
+            'adresse' => request('adresse_candidat'),
+            'cni' => request('cni_candidat'),
+            'phoneNo' => request('phone_candidat'),
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        session()->flash('newInscriptionCandidat', 'تم إنشاء تسجيل  بنجاح');
+        return redirect()->route('formInscription');
     }
 }

@@ -15,7 +15,7 @@ class InscriptionComponent extends Component
     use WithPagination;
     public function render()
     {
-        $inscriptions = Inscription::paginate(2);
+        $inscriptions = Inscription::paginate(5);
         return view('livewire.inscription.inscription-component',['inscriptions'=>$inscriptions]);
     }
 }

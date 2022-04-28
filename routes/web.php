@@ -50,12 +50,18 @@ Route::post('/addReservation', ReservationComponent::class)->name('addReservatio
 
 //Route::get('/formInscription', FormInscriptionComponent::class)->name('formInscription');
 
-Route::get('/formInscription', [InscriptionController::class, 'create'])->name('formInscription');
-Route::post('/formInscription_storeSchool', [InscriptionController::class, 'storeSchool']);
-Route::post('/formInscription_storeMoniteur', [InscriptionController::class, 'storeMoniteur']);
-Route::post('/formInscription_storeCandidat', [InscriptionController::class, 'storeCandidat']);
+//Route::get('/formInscription', [InscriptionController::class, 'create'])->name('formInscription');
+//Route::post('/formInscription_storeSchool', [InscriptionController::class, 'storeSchool']);
+//Route::post('/formInscription_storeMoniteur', [InscriptionController::class, 'storeMoniteur']);
+//Route::post('/formInscription_storeCandidat', [InscriptionController::class, 'storeCandidat']);
 
 //Route::get('/formInscription','InscriptionController@create')->name('formInscription');
 //Route::post('/formInscription_storeSchool','InscriptionController@storeSchool');
 //Route::post('/formInscription_storeMoniteur','InscriptionController@storeMoniteur');
 //Route::post('/formInscription_storeCandidat','InscriptionController@storeCandidat');
+
+
+Route::get('/formInscription', [InscriptionController::class, 'index'])->name('formInscription');
+Route::post('/formInscription_storeSchool', [InscriptionController::class, 'storeSchool'])->name('storeSchool');
+Route::post('/formInscription_storeMoniteur', [InscriptionController::class, 'storeMoniteur'])->name('storeMoniteur');
+Route::post('/formInscription_storeCandidat', [InscriptionController::class, 'storeCandidat'])->name('storeCandidat');

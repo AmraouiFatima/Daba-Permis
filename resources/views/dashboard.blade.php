@@ -87,12 +87,27 @@
                                     <tr>
                                         <td><a href="#">{{ $i->fullname }}</a></td>
                                         <td>{{ $i->email }}</td>
-                                        <td><span class="badge badge-pill badge-danger">Candidat</span></td>
+                                        <td>{{ $i->type->type }}</td>
                                         <td>{{ $i->city }}</td>
                                         <td>{{ $i->cni }}</td>
-                                        <td>{{ $i->phone }}</td>
+                                        <td>{{ $i->phoneNo }}</td>
 
-                                        <td><span class="badge badge-pill badge-success">valider</span></td>
+                                       <td>
+                                            @if($i->status == 0)
+                                            <span class="badge badge-pill badge-warning">
+                                                في طور المعالجة
+                                            </span> 
+                                            @elseif($i->status == 1) 
+                                            <span class="badge badge-pill badge-success">
+                                                طلب مقبول
+                                            </span>
+                                            @elseif($i->status == -1) 
+                                            <span class="badge badge-pill badge-danger">
+                                                طلب مرفوض
+                                            </span>
+                                            @endif
+                                            
+                                        </td>
                                         <td>
                                             <button type="button"
                                                 class="waves-effect waves-circle btn btn-circle btn-warning btn-xs mb-5 mr-2"><i

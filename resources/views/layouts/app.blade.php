@@ -8,7 +8,7 @@
 
     <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}">
 
-    <title>EduAdmin - Dashboard</title>
+    <title>DabaPermis - Dashboard</title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors_css.css') }}">
@@ -17,12 +17,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/skin_color.css') }}">
 
-    <style>
-        .page-item.active .page-link {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-            background-color: #04a08b;
-            border-color: #04a08b;
-        }
+    <style>
+
 
         .sidebar-menu li a span{
             color: #F2F2F2;
@@ -31,9 +29,6 @@
         .sidebar-menu li a span:hover{
             color: white;
         }
-        /*.navbar {
-            background-color: #678dd1;
-        }*/
 
     </style>
 
@@ -52,7 +47,7 @@
         @if (!request()->routeIs('formInscription'))
 
         <header class="main-header">
-            <div class="d-flex align-items-center logo-box justify-content-start" style="background:#687DD1;">
+            <div class="d-flex align-items-center logo-box justify-content-start" style="background:#678dd1">
                 <a href="#"
                     class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent text-white"
                     data-toggle="push-menu" role="button">
@@ -91,7 +86,7 @@
                         </li>
                         <li class="btn-group nav-item d-none d-xl-inline-block">
                             <a href="mailbox.html" class="waves-effect waves-light nav-link svg-bt-icon"
-                                title="صندوق بريد">
+                                title="صندوق الرسائل">
                                 <i class="icon-Mailbox"><span class="path1"></span><span
                                         class="path2"></span></i>
                             </a>
@@ -144,10 +139,10 @@
                                     <div class="p-20">
                                         <div class="flexbox">
                                             <div>
-                                                <h4 class="mb-0 mt-0">إشعارات</h4>
+                                                <h4 class="mb-0 mt-0">Notifications</h4>
                                             </div>
                                             <div>
-                                                <a href="#" class="text-danger">امسح الكل</a>
+                                                <a href="#" class="text-danger">Clear All</a>
                                             </div>
                                         </div>
                                     </div>
@@ -224,7 +219,7 @@
                                         @csrf
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             this.closest('form').submit();"><i
-                                                class="ti-lock text-muted mr-2"></i>تسجيل خروج</a>
+                                                class="ti-lock text-muted mr-2"></i>تسجيل الخروج</a>
 
                                     </form>
                                 </li>
@@ -233,7 +228,7 @@
 
                         <!-- Control Sidebar Toggle Button -->
                         <li>
-                            <a href="#" data-toggle="control-sidebar" title="إعدادات" class="waves-effect waves-light">
+                            <a href="#" data-toggle="control-sidebar" title="اعدادات" class="waves-effect waves-light">
                                 <i class="icon-Settings"><span class="path1"></span><span
                                         class="path2"></span></i>
                             </a>
@@ -246,7 +241,7 @@
 
 
 
-        <aside class="main-sidebar " style="background:#687dd1">
+        <aside class="main-sidebar " style="background:#678dd1">
             <!-- sidebar-->
             <section class="sidebar position-relative">
                 <div class="multinav">
@@ -350,15 +345,18 @@
                     </div>
                 </div>
             </section>
-            <div class="sidebar-footer " style="background:#687dd1">
-                <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="إعدادات"
+            <div class="sidebar-footer " style="background:#678dd1">
+                <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="الاعدادات"
                     data-original-title="Settings" aria-describedby="tooltip92529"><span
                         class="icon-Settings-2"></span></a>
-                <a href="mailbox.html" class="link" data-toggle="tooltip" title="البريد الإلكتروني"
+                <a href="mailbox.html" class="link" data-toggle="tooltip" title="البريد الالكتروني"
                     data-original-title="Email"><span class="icon-Mail"></span></a>
-                <a href="/" class="link" data-toggle="tooltip" title="تسجيل خروج" data-original-title="Logout"><span
+                <a href="/" class="link" data-toggle="tooltip" title="تسجيل الخروج" data-original-title="Logout"><span
                         class="icon-Lock-overturning"><span class="path1"></span><span
                             class="path2"></span></span></a>
+
+
+
             </div>
         </aside>
 
@@ -391,7 +389,7 @@
                         <a href="javascript:void(0)" class="text-right text-grey"><i class="ti-plus"></i></a>
                     </div>
                     <div class="lookup lookup-sm lookup-right d-none d-lg-block">
-                        <input type="text" name="s" placeholder="Search" class="w-p100">
+                        <input type="text" name="s" placeholder="بحث" class="w-p100">
                     </div>
                     <div class="media-list media-list-hover mt-20">
                         <div class="media py-10 px-0">
@@ -692,6 +690,26 @@
     <!-- EduAdmin App -->
     <script src="{{ asset('assets/js/template.js') }}"></script>
     <script src="{{ asset('js/pages/dashboard6.js') }}"></script>
+
+    <script>
+        window.livewire.on('reservationCreate', () => {
+            $('#createReservation').modal('hide');
+        });
+    </script>
+
+<script>
+    window.livewire.on('reservationUpdate', () => {
+        $('#modal-edit').modal('hide');
+    });
+</script>
+
+
+
+
+
+
+
+
 </body>
 
 </html>
